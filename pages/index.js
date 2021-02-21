@@ -2,6 +2,7 @@ import ProductCard from "../components/ProductCard";
 import { Box, makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'
 import Cart from '../components/Cart'
+import { useState } from "react";
 
 export const getStaticProps = async () => {
   const res = await fetch('http://localhost:8000/products');
@@ -30,12 +31,13 @@ const useStyles = makeStyles({
 
 export default function Home({products}) {
   const classes = useStyles();
+  const [data] = useState(products);
 
   return (
     <div className={classes.root}>
       <div className={classes.content}>
         <Grid container spacing={4}>
-          {products.map(product => <Grid item xs={12} sm={6} md={4} > 
+          {data.map(product => <Grid item xs={12} sm={6} md={4} > 
             <ProductCard key={product.id} data={product} /> 
           </Grid>)}
         </Grid>

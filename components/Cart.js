@@ -8,7 +8,21 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         width: '100%',
-        padding: '10px'
+        padding: '10px',
+        flexDirection: 'column'
+    },
+    cartColumnName: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        margin: '5px 10px',
+        borderBottom: '2px solid black'
+    },
+    cartTotal: {
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        borderTop: '2px solid black',
+        margin: '5px 10px',
+        backgroundColor: theme.palette.primary.main
     }
 }));
 
@@ -24,7 +38,26 @@ const Cart = () => {
                 </Badge>
             </IconButton>
         </Typography>
+        <div className={classes.cartColumnName}>
+            <Typography variant='button'>
+                item
+            </Typography>
+            <Typography variant='button'>
+                price
+            </Typography>
+            <Typography variant='button'>
+                quantity
+            </Typography>
+        </div>
 
+        <div className={classes.cartTotal}>
+            <Typography variant='h6'>
+                Total
+            </Typography>
+            <Typography variant='h6'>
+                253.2
+            </Typography>
+        </div>
     </Paper> );
 }
  
