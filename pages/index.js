@@ -31,20 +31,77 @@ const useStyles = makeStyles({
 
 export default function Home({products}) {
   const classes = useStyles();
-  const [data] = useState(products);
+  const tracker = products.map((item) => {
+    return {
+      id: item.id,
+      image: item.images[0].src,
+      title: item.title,
+      price: item.variants[0].price,
+      numbers: 0
+    }
+  });
+
+  const [basket, setBasket] = useState(tracker);
+
+  const addProduct = (productid) => {
+    setBasket(basket.map((item) => {
+      if(item.id === productid){
+        return {
+          id: item.id,
+          image: item.image,
+          title: item.title,
+          price: item.price,
+          numbers: ++item.numbers
+        }
+      }
+        
+      else
+        return {
+          id: item.id,
+          image: item.image,
+          title: item.title,
+          price: item.price,
+          numbers: item.numbers
+        }
+    }))
+    console.log(basket,'offf');
+  }
+
+  const removeProduct = (productid) => {
+    setBasket(basket.map((item) => {
+      if(item.id === productid)
+        return {
+          id: item.id,
+          image: item.image,
+          title: item.title,
+          price: item.price,
+          numbers: --item.numbers
+        }
+      else
+        return {
+          id: item.id,
+          image: item.image,
+          title: item.title,
+          price: item.price,
+          numbers: item.numbers
+        }
+    }))
+  }
 
   return (
     <div className={classes.root}>
       <div className={classes.content}>
         <Grid container spacing={4}>
-          {data.map(product => <Grid item xs={12} sm={6} md={4} > 
-            <ProductCard key={product.id} data={product} /> 
+          {products.map(product => <Grid item xs={12} sm={6} md={4} key={product.id}> 
+            <ProductCard data={product} addProduct={addProduct}/> 
           </Grid>)}
         </Grid>
       </div>
       <Box display={{ xs: 'none', sm: 'none', md: 'block' }} style={{flex: 'auto'}}>
         <div className={classes.cart}>
-          <Cart></Cart>
+          <Cart datas={products} basketItems={basket.filter((e) => {
+            return e.numbers > 0
+          })} removeProduct={removeProduct}></Cart>
         </div>
       </Box>
     </div>

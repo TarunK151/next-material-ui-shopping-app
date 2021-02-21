@@ -30,7 +30,7 @@ export function SizeDropDown({data}) {
     return sizes;
 }
 
-const ProductCard = ({data}) => {
+const ProductCard = ({data, addProduct}) => {
     const classes = useStyles();
 
     return (
@@ -56,7 +56,7 @@ const ProductCard = ({data}) => {
                 </CardActionArea>
             </Link>
             <CardActions>
-                <Button variant="contained" size="small" color="secondary">
+                <Button variant="contained" size="small" color="secondary" onClick={() => addProduct(data.id)}>
                     Add to cart
                 </Button>
             </CardActions>
