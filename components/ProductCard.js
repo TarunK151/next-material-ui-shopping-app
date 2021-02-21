@@ -35,7 +35,7 @@ const ProductCard = ({data, addProduct}) => {
 
     return (
         <Card className={classes.root}>
-            <Link href={`/products/${data.id}`}>
+            <Link href={`/products/${data.id}`} style={{textDecoration: 'none'}}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
@@ -46,10 +46,11 @@ const ProductCard = ({data, addProduct}) => {
                         style={{objectFit: 'contain'}}
                     />
                     <CardContent className={classes.productDescription}>
-                        <Typography variant='subtitle2' style={{flexBasis: '90%', wordBreak: 'break-word'}}>
+                        <Typography variant='subtitle2' style={{flexBasis: '90%', wordBreak: 'break-word',
+                        color: 'black'}}>
                             {data.title}
                         </Typography>
-                        <Typography variant='subtitle2' style={{flex: 'auto'}}>
+                        <Typography variant='subtitle2' style={{flex: 'auto', color: 'black'}}>
                             {data.variants[0].price}
                         </Typography>
                     </CardContent>

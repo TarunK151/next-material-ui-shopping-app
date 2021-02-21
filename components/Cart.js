@@ -1,6 +1,5 @@
 import { makeStyles, Paper, Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import { red } from "@material-ui/core/colors";
 import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import Button from "@material-ui/core/Button";
@@ -15,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     cartColumn: {
         display: 'flex',
         margin: '5px 10px',
+        justifyContent: 'space-evenly',
         borderBottom: '2px solid black'
     },
     cartRow: {
@@ -47,13 +47,13 @@ const Cart = ({datas, basketItems, removeProduct}) => {
             </IconButton>
         </Typography>
         <div className={classes.cartColumn} >
-            <Typography variant='button' style={{flex: '1 0 auto'}}>
+            <Typography variant='button' >
                 item
             </Typography>
-            <Typography variant='button' style={{flex: '1 0 auto'}}>
+            <Typography variant='button' >
                 price
             </Typography>
-            <Typography variant='button' style={{flex: '1 0 auto'}}>
+            <Typography variant='button' >
                 quantity
             </Typography>
         </div>
@@ -74,8 +74,9 @@ const Cart = ({datas, basketItems, removeProduct}) => {
             <Typography variant='h6'>
                 Total
             </Typography>
+            {console.log(basketItems,'assdas')}
             <Typography variant='h6'>
-                253.2
+                {basketItems.reduce((a, b) => a + (b.price * b.numbers), 0).toFixed(2)}
             </Typography>
         </div>
     </Paper> );

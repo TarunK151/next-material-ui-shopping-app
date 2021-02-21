@@ -6,7 +6,7 @@ const Footer = () => {
         left: 0, bottom: 0, width: '100%', textAlign: 'center', padding: '20px'}}>
         
         <Paper style={{height: '60px'}}>
-            <Typography style={{lineHeight: '60px'}}>Sweatshirt shoping site ©</Typography>
+            <Typography style={{lineHeight: '60px'}}>Apparel shoping site ©</Typography>
         </Paper>
         
     </footer> );
