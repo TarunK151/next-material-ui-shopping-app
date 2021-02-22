@@ -74,7 +74,6 @@ const Cart = ({datas, basketItems, removeProduct}) => {
             <Typography variant='h6'>
                 Total
             </Typography>
-            {console.log(basketItems,'assdas')}
             <Typography variant='h6'>
                 {basketItems.reduce((a, b) => a + (b.price * b.numbers), 0).toFixed(2)}
             </Typography>

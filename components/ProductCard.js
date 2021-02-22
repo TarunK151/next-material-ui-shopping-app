@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link, NativeSelect } from '@material-ui/core';
+import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
@@ -21,14 +21,6 @@ const useStyles = makeStyles({
         overflow: 'hidden'
     }
 });
-
-export function SizeDropDown({data}) {
-    const sizes = <NativeSelect style={{width: 'auto'}}>{data.options[0].values.map((val) => 
-        <option value={val}>{val}</option>)}
-        </NativeSelect>
-        
-    return sizes;
-}
 
 const ProductCard = ({data, addProduct}) => {
     const classes = useStyles();

@@ -3,7 +3,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import { SizeDropDown } from "./ProductCard";
+import { useState } from "react";
+import { NativeSelect } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
@@ -23,6 +24,8 @@ const useStyles = makeStyles({
 
 const ProductDetails = ({data}) => {
     const classes = useStyles();
+
+    const [variant, setVariant] = useState(0);
 
     return ( 
         <Card className={classes.root}>
@@ -55,12 +58,16 @@ const ProductDetails = ({data}) => {
                             <br/>
                             <Typography variant='h5'>
                                 Variant &nbsp;&nbsp;&nbsp;
-                                <SizeDropDown data={data}></SizeDropDown>
+                                <NativeSelect
+                                onChange={(e) => setVariant(e.target.options.selectedIndex)}
+                                style={{width: 'auto'}}>{data.options[0].values.map((val,i) => 
+                                    <option value={val} key={data.variants[i].id}>{val}</option>)}
+                                </NativeSelect>
                             </Typography>
                             <br/>
                             <Typography variant='subtitle2' style={{fontSize: '18px'}}>
-                                Available: {data.variants[0].available? 'Yes': 'No'} &nbsp;&nbsp;&nbsp;
-                                Price: {data.variants[0].price}
+                                Available: {data.variants[variant].available? 'Yes': 'No'} &nbsp;&nbsp;&nbsp;
+                                Price: {data.variants[variant].price}
                             </Typography>
                         </CardContent>
 
