@@ -3,6 +3,7 @@ import { Box, makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'
 import Cart from '../components/Cart'
 import { useState, useEffect } from "react";
+import  Head from 'next/head';
 
 export const getStaticProps = async () => {
   const res = await fetch('http://localhost:8000/products');
@@ -100,6 +101,8 @@ export default function Home({products}) {
   }
 
   return (
+    <>
+    <Head><title>Shopping site</title></Head>
     <div className={classes.root}>
       <div className={classes.content}>
         <Grid container spacing={4}>
@@ -116,5 +119,6 @@ export default function Home({products}) {
         </div>
       </Box>
     </div>
+    </>
   )
 }

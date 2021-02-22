@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import ProductDetails from '../../components/ProductDetails'
+import  Head from 'next/head';
 
 export const getStaticPaths = async () => {
     const res = await fetch('http://localhost:8000/products');
@@ -41,9 +42,12 @@ const ProductDetailsPage = ({product}) => {
     const classes = useStyles();
 
     return ( 
+        <>
+        <Head><title>{product.title}</title></Head>
         <div className={classes.root}>
             <ProductDetails data={product}></ProductDetails>
         </div>
+        </>
      );
 }
  
