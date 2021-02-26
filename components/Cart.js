@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Cart = ({datas, basketItems, removeProduct}) => {
+const Cart = ({basketItems, modifyProductQuantity}) => {
     const classes = useStyles();
 
     return ( <Paper className={classes.root}>
@@ -67,7 +67,7 @@ const Cart = ({datas, basketItems, removeProduct}) => {
             <div className={classes.cartItem} style={{flex: '1 0 auto'}}>
                 <p style={{textAlign: 'center'}}>{item.numbers}</p>
                 <Button variant="contained" size="small"
-                 style={{fontSize: '16px'}} onClick={() => removeProduct(item.id)}>-</Button>
+                 style={{fontSize: '16px'}} onClick={() => modifyProductQuantity(item.id, -1)}>-</Button>
             </div>
         </div> )}
         <div className={classes.cartTotal}>

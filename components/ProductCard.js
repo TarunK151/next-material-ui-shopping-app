@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     }
 });
 
-const ProductCard = ({data, addProduct}) => {
+const ProductCard = ({data, modifyProductQuantity}) => {
     const classes = useStyles();
 
     return (
@@ -49,7 +49,7 @@ const ProductCard = ({data, addProduct}) => {
                 </CardActionArea>
             </Link>
             <CardActions>
-                <Button variant="contained" size="small" color="secondary" onClick={() => addProduct(data.id)}>
+                <Button variant="contained" size="small" color="secondary" onClick={() => modifyProductQuantity(data.id, 1)}>
                     Add to cart
                 </Button>
             </CardActions>

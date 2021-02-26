@@ -56,47 +56,14 @@ export default function Home({products}) {
     localStorage.setItem('cart-items', JSON.stringify(basket));
   });
 
-  const addProduct = (productid) => {
+  const modifyProductQuantity = (productid, val) => {
+    console.log('modifyProductQuantity');
     setBasket(basket.map((item) => {
       if(item.id === productid){
-        return {
-          id: item.id,
-          image: item.image,
-          title: item.title,
-          price: item.price,
-          numbers: ++item.numbers
-        }
+        item.numbers = item.numbers + val;
       }
-        
-      else
-        return {
-          id: item.id,
-          image: item.image,
-          title: item.title,
-          price: item.price,
-          numbers: item.numbers
-        }
-    }))
-  }
 
-  const removeProduct = (productid) => {
-    setBasket(basket.map((item) => {
-      if(item.id === productid)
-        return {
-          id: item.id,
-          image: item.image,
-          title: item.title,
-          price: item.price,
-          numbers: --item.numbers
-        }
-      else
-        return {
-          id: item.id,
-          image: item.image,
-          title: item.title,
-          price: item.price,
-          numbers: item.numbers
-        }
+      return item;
     }))
   }
 
@@ -107,15 +74,15 @@ export default function Home({products}) {
       <div className={classes.content}>
         <Grid container spacing={4}>
           {products.map(product => <Grid item xs={12} sm={6} md={4} key={product.id}> 
-            <ProductCard data={product} addProduct={addProduct}/> 
+            <ProductCard data={product} modifyProductQuantity={modifyProductQuantity}/> 
           </Grid>)}
         </Grid>
       </div>
       <Box display={{ xs: 'none', sm: 'none', md: 'block' }} style={{flex: 'auto'}}>
         <div className={classes.cart}>
-          <Cart datas={products} basketItems={basket.filter((e) => {
+          <Cart basketItems={basket.filter((e) => {
             return e.numbers > 0
-          })} removeProduct={removeProduct}></Cart>
+          })} modifyProductQuantity={modifyProductQuantity}></Cart>
         </div>
       </Box>
     </div>
