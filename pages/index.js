@@ -2,7 +2,7 @@ import ProductCard from "../components/ProductCard";
 import { Box, makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'
 import Cart from '../components/Cart'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import  Head from 'next/head';
 
 export const getStaticProps = async () => {
@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 
 export default function Home({products}) {
   const classes = useStyles();
+  const stateRef = useRef();
 
   const tracker = products.map((item) => {
     return {
@@ -45,6 +46,8 @@ export default function Home({products}) {
 
   const [basket, setBasket] = useState(tracker);
 
+  stateRef.current = basket;
+
   useEffect(() => {
     const data = localStorage.getItem('cart-items');
     if(data){
@@ -57,8 +60,7 @@ export default function Home({products}) {
   });
 
   const modifyProductQuantity = (productid, val) => {
-    console.log('modifyProductQuantity');
-    setBasket(basket.map((item) => {
+    setBasket(stateRef.current.map((item) => {
       if(item.id === productid){
         item.numbers = item.numbers + val;
       }
