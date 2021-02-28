@@ -4,12 +4,10 @@ import Grid from '@material-ui/core/Grid'
 import Cart from '../components/Cart'
 import { useState, useEffect, useRef } from "react";
 import  Head from 'next/head';
+import jsonData from '../data/products.json'
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:8000/products');
-  const data = await res.json();
-
-  return {props: {products: data}}
+  return {props: {products: jsonData.products}}
 }
 
 const useStyles = makeStyles({

@@ -1,12 +1,10 @@
 import { makeStyles } from '@material-ui/core';
 import ProductDetails from '../../components/ProductDetails'
 import  Head from 'next/head';
+import jsonData from '../../data/products.json'
 
 export const getStaticPaths = async () => {
-    const res = await fetch('http://localhost:8000/products');
-    const data = await res.json();
-
-    const paths = data.map(product => {
+    const paths = jsonData.products.map(product => {
         return {
             params: {id: product.id.toString()}
         }
@@ -19,12 +17,11 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context) => {
-    const id = context.params.id;
-    const res = await fetch('http://localhost:8000/products/' + id);
-    const data = await res.json();
+    const data = jsonData.products.filter((e) => 
+    e.id.toString() === context.params.id);
 
     return {
-        props: {product: data}
+        props: {product: data[0]}
     }
 }
 
