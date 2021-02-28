@@ -1,5 +1,5 @@
 import ProductCard from "../components/ProductCard";
-import { Box, makeStyles } from '@material-ui/core';
+import { Box, List, ListItem, makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'
 import Cart from '../components/Cart'
 import { useState, useEffect, useRef } from "react";
@@ -14,17 +14,11 @@ const useStyles = makeStyles({
   root: {
     margin: '120px auto',
     padding: '0 16px',
-    display: 'flex',
-    justifyContent: 'center',
     maxWidth: '1440px'
   },
-  content: {
-    flexBasis: '75%'
-  },
   cart: {
-    display: 'flex',
-    margin: '0 0 0 15px',
-    alignSelf: 'flex-start'
+    margin: '0 auto 15px',
+    maxWidth: '500px'
   }
 })
 
@@ -71,20 +65,22 @@ export default function Home({products}) {
     <>
     <Head><title>Shopping site</title></Head>
     <div className={classes.root}>
-      <div className={classes.content}>
-        <Grid container spacing={4}>
-          {products.map(product => <Grid item xs={12} sm={6} md={4} key={product.id}> 
-            <ProductCard data={product} modifyProductQuantity={modifyProductQuantity}/> 
-          </Grid>)}
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={12} md={9}>
+          <Grid container spacing={4} >
+            {products.map(product => <Grid item xs={12} sm={6} md={4} key={product.id}> 
+              <ProductCard data={product} modifyProductQuantity={modifyProductQuantity}/> 
+            </Grid>)}
+          </Grid>
         </Grid>
-      </div>
-      <Box display={{ xs: 'none', sm: 'none', md: 'block' }} style={{flex: 'auto'}}>
-        <div className={classes.cart}>
-          <Cart basketItems={basket.filter((e) => {
-            return e.numbers > 0
-          })} modifyProductQuantity={modifyProductQuantity}></Cart>
-        </div>
-      </Box>
+        <Grid item xs={12} sm={12} md={3}>
+          <div className={classes.cart}>
+            <Cart basketItems={basket.filter((e) => {
+              return e.numbers > 0
+            })} modifyProductQuantity={modifyProductQuantity}></Cart>
+          </div>
+        </Grid>
+      </Grid>
     </div>
     </>
   )

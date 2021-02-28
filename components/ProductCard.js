@@ -11,8 +11,9 @@ import { memo } from "react";
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
-        padding: 10
+        maxWidth: 500,
+        padding: 10,
+        margin: '0 auto'
     },
     productDescription: {
         display: 'flex',
