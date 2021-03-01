@@ -18,7 +18,7 @@ const Header = () => {
     return ( 
         <AppBar >
             <Toolbar className={classes.root}>
-                <Typography variant='h4'>Apparel Shopping site</Typography>
+                <Typography variant='h5'>Apparel Shopping site</Typography>
                 <Typography variant='h6'>T-shirts, Sweatshirts</Typography>
             </Toolbar>
         </AppBar>
