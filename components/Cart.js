@@ -66,7 +66,7 @@ const Cart = ({basketItems, modifyProductQuantity}) => {
             <b style={{flex: '1 0 auto'}}>{item.price}</b>
             <div className={classes.cartItem} style={{flex: '1 0 auto'}}>
                 <p style={{textAlign: 'center'}}>{item.numbers}</p>
-                <Button variant="contained" size="small"
+                <Button variant="contained" size="small" color='secondary'
                  style={{fontSize: '16px'}} onClick={() => modifyProductQuantity(item.id, -1)}>-</Button>
             </div>
         </div> )}

@@ -6,8 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { Link } from '@material-ui/core';
-import { memo } from "react";
 
 const useStyles = makeStyles({
     root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     }
 });
 
-const ProductCard = ({data, modifyProductQuantity}) => {
+const ProductCard = ({data, modifyProductQuantity, basketItem}) => {
     const classes = useStyles();
 
     return (
@@ -50,13 +50,19 @@ const ProductCard = ({data, modifyProductQuantity}) => {
                 </CardActionArea>
             </Link>
             <CardActions>
-                <Button variant="contained" size="small" color="secondary" onClick={() => 
-                modifyProductQuantity(data.id, 1)}>
+                {basketItem[0].numbers <= 0 && <Button variant="contained" size="small" 
+                color="secondary" onClick={() => modifyProductQuantity(data.id, 1)}>
                     Add to cart
-                </Button>
+                </Button>}
+                {basketItem[0].numbers > 0 && <ButtonGroup variant="contained" color="secondary" 
+                size="small" aria-label="product button">
+                    <Button onClick={() => modifyProductQuantity(data.id, -1)}>-</Button>
+                    <Button>{basketItem[0].numbers}</Button>
+                    <Button onClick={() => modifyProductQuantity(data.id, 1)}>+</Button>
+                </ButtonGroup>}
             </CardActions>
         </Card>
     );
 };
 
-export default memo(ProductCard, () => true);
+export default ProductCard;

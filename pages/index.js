@@ -1,8 +1,8 @@
 import ProductCard from "../components/ProductCard";
-import { Box, List, ListItem, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'
 import Cart from '../components/Cart'
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import  Head from 'next/head';
 import jsonData from '../data/products.json'
 
@@ -24,7 +24,6 @@ const useStyles = makeStyles({
 
 export default function Home({products}) {
   const classes = useStyles();
-  const stateRef = useRef();
 
   const tracker = products.map((item) => {
     return {
@@ -38,8 +37,6 @@ export default function Home({products}) {
 
   const [basket, setBasket] = useState(tracker);
 
-  stateRef.current = basket;
-
   useEffect(() => {
     const data = localStorage.getItem('cart-items');
     if(data){
@@ -52,7 +49,7 @@ export default function Home({products}) {
   });
 
   const modifyProductQuantity = (productid, val) => {
-    setBasket(stateRef.current.map((item) => {
+    setBasket(basket.map((item) => {
       if(item.id === productid){
         item.numbers = item.numbers + val;
       }
@@ -69,7 +66,9 @@ export default function Home({products}) {
         <Grid item xs={12} sm={12} md={9}>
           <Grid container spacing={4} >
             {products.map(product => <Grid item xs={12} sm={6} md={4} key={product.id}> 
-              <ProductCard data={product} modifyProductQuantity={modifyProductQuantity}/> 
+              <ProductCard data={product} modifyProductQuantity={modifyProductQuantity}
+                basketItem={basket.filter((e) => {return e.id === product.id})}
+              /> 
             </Grid>)}
           </Grid>
         </Grid>
