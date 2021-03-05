@@ -28,11 +28,11 @@ const ProductCard = ({data, modifyProductQuantity, basketItem}) => {
 
     return (
         <Card className={classes.root}>
-            <Link href={`/products/${data.id}`} style={{textDecoration: 'none'}}>
+            <Link href={`/products/${data.handle}`} style={{textDecoration: 'none'}}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
-                        alt="Contemplative Reptile"
+                        alt={data.title}
                         height="300px"
                         image={data.images[0].src}
                         title={data.title}

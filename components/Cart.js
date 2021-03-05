@@ -59,7 +59,7 @@ const Cart = ({basketItems, modifyProductQuantity}) => {
         </div>
         {basketItems.map((item) => <div className={classes.cartRow} key={item.id}>
             <div className={classes.cartItem} style={{flex: '1 0 auto'}}>
-                <img src={item.image} style={{width: '60px', height: '60px', alignSelf: 'center'}} />
+                <img src={item.image} alt={item.title} style={{width: '60px', height: '60px', alignSelf: 'center'}} />
                 <p style={{width: '80px', fontSize: '12px', textAlign: 'center', alignSelf: 'center',
                 wordBreak: 'break-word'}}>{item.title} </p>
             </div>

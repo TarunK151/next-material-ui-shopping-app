@@ -60,7 +60,10 @@ export default function Home({products}) {
 
   return (
     <>
-    <Head><title>Shopping site</title></Head>
+    <Head>
+      <title>Shopping site</title>
+      <meta name="description" content="shopping site"/>
+    </Head>
     <div className={classes.root}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={12} md={9}>

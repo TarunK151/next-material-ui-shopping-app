@@ -6,7 +6,7 @@ import jsonData from '../../data/products.json'
 export const getStaticPaths = async () => {
     const paths = jsonData.products.map(product => {
         return {
-            params: {id: product.id.toString()}
+            params: {id: product.handle}
         }
     })
 
@@ -18,7 +18,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
     const data = jsonData.products.filter((e) => 
-    e.id.toString() === context.params.id);
+    e.handle === context.params.id);
 
     return {
         props: {product: data[0]}
@@ -40,7 +40,10 @@ const ProductDetailsPage = ({product}) => {
 
     return ( 
         <>
-        <Head><title>{product.title}</title></Head>
+        <Head>
+            <title>{product.title}</title>
+            <meta name="description" content="{product.title}"/>
+        </Head>
         <div className={classes.root}>
             <ProductDetails data={product}></ProductDetails>
         </div>

@@ -5,6 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { useState } from "react";
 import { NativeSelect } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles({
     root: {
@@ -34,7 +36,7 @@ const ProductDetails = ({data}) => {
                     <CardActionArea className={classes.product}>
                         <CardMedia 
                             component='img'
-                            alt={data.handle}
+                            alt={data.title}
                             height='auto'
                             image={data.images[0].src}
                             title={data.title}
@@ -58,11 +60,17 @@ const ProductDetails = ({data}) => {
                             <br/>
                             <Typography variant='h5'>
                                 Variant &nbsp;&nbsp;&nbsp;
-                                <NativeSelect
-                                onChange={(e) => setVariant(e.target.options.selectedIndex)}
-                                style={{width: 'auto'}}>{data.options[0].values.map((val,i) => 
-                                    <option value={val} key={data.variants[i].id}>{val}</option>)}
-                                </NativeSelect>
+                                <FormControl>
+                                    <InputLabel htmlFor='select-size'>size</InputLabel>
+                                    <NativeSelect inputProps={{
+                                        name: 'size',
+                                        id: 'select-size',
+                                    }}
+                                    onChange={(e) => setVariant(e.target.options.selectedIndex)}
+                                    style={{width: 'auto'}}>{data.options[0].values.map((val,i) => 
+                                        <option value={val} key={data.variants[i].id}>{val}</option>)}
+                                    </NativeSelect>
+                                </FormControl>
                             </Typography>
                             <br/>
                             <Typography variant='subtitle2' style={{fontSize: '18px'}}>
